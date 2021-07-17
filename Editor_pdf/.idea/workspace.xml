@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1660f39-76b2-4737-bed8-b78829c8c87f" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/home/xu/.android/avd/Pixel_3a_API_30_x86.avd]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="layoutResourceFile" />
+        <option value="navigationResourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1vNJOSt98lF0XVEg8zyG0g1uV5P" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@192.168.100.59:5555" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-17T00:10:33.989290Z" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Dependencies" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/app/libs/fontbox-2.0.24.jar!/org/apache/fontbox" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/libs" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="FilePicker.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b1660f39-76b2-4737-bed8-b78829c8c87f" name="Default Changelist" comment="" />
+      <created>1626396581832</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1626396581832</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="203" y="63" width="952" height="677" key="#PSD" timestamp="1626478425737">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="203" y="63" width="952" height="677" key="#PSD/0.25.1366.743@0.25.1366.743" timestamp="1626478425737" />
+    <state x="416" y="146" width="526" height="497" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1626461671707">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="416" y="146" width="526" height="497" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.25.1366.743@0.25.1366.743" timestamp="1626461671707" />
+    <state x="266" y="155" width="826" height="479" key="AndroidCreateResourceDirectoryDialog" timestamp="1626493235243">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="266" y="155" width="826" height="479" key="AndroidCreateResourceDirectoryDialog/0.25.1366.743@0.25.1366.743" timestamp="1626493235243" />
+    <state x="435" y="148" width="826" height="479" key="AndroidCreateResourceFileDialog" timestamp="1626497114481">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="435" y="148" width="826" height="479" key="AndroidCreateResourceFileDialog/0.25.1366.743@0.25.1366.743" timestamp="1626497114481" />
+    <state x="99" y="125" width="1168" height="544" key="DiffContextDialog" timestamp="1626477791933">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="99" y="125" width="1168" height="544" key="DiffContextDialog/0.25.1366.743@0.25.1366.743" timestamp="1626477791933" />
+    <state x="466" y="155" width="426" height="479" key="FileChooserDialogImpl" timestamp="1626491349425">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="466" y="155" width="426" height="479" key="FileChooserDialogImpl/0.25.1366.743@0.25.1366.743" timestamp="1626491349425" />
+    <state width="1320" height="216" key="GridCell.Tab.0.bottom" timestamp="1626481636543">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state width="1320" height="216" key="GridCell.Tab.0.bottom/0.25.1366.743@0.25.1366.743" timestamp="1626481636543" />
+    <state width="1320" height="216" key="GridCell.Tab.0.center" timestamp="1626481636541">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state width="1320" height="216" key="GridCell.Tab.0.center/0.25.1366.743@0.25.1366.743" timestamp="1626481636541" />
+    <state width="1320" height="216" key="GridCell.Tab.0.left" timestamp="1626481636539">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state width="1320" height="216" key="GridCell.Tab.0.left/0.25.1366.743@0.25.1366.743" timestamp="1626481636539" />
+    <state width="1320" height="216" key="GridCell.Tab.0.right" timestamp="1626481636542">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state width="1320" height="216" key="GridCell.Tab.0.right/0.25.1366.743@0.25.1366.743" timestamp="1626481636542" />
+    <state x="179" y="32" key="SettingsEditor" timestamp="1626477998760">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="179" y="32" key="SettingsEditor/0.25.1366.743@0.25.1366.743" timestamp="1626477998760" />
+    <state x="478" y="203" width="574" height="295" key="psd.add.jar.dependency.panel.dimension" timestamp="1626411641439">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="478" y="203" width="574" height="295" key="psd.add.jar.dependency.panel.dimension/0.25.1366.743@0.25.1366.743" timestamp="1626411641439" />
+  </component>
+</project>
