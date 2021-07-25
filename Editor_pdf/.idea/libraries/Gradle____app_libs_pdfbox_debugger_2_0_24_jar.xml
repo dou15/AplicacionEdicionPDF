@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: ./app/libs/pdfbox-debugger-2.0.24.jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/pdfbox-debugger-2.0.24.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

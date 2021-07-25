@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/editor">
+
+    <fragment
+        android:id="@+id/editor"
+        android:name="com.aaa.editorpdf_192307.Editor"
+        android:label="Editor PDF" >
+        <action
+            android:id="@+id/action_mergepdf"
+            app:destination="@id/mergepdf" />
+        <action
+            android:id="@+id/action_extraer_imagenes"
+            app:destination="@id/picture" />
+    </fragment>
+    <fragment
+        android:id="@+id/mergepdf"
+        android:name="com.aaa.editorpdf_192307.MergePDF"
+        android:label="Unir PDFs" />
+    <fragment
+        android:id="@+id/picture"
+        android:name="com.aaa.editorpdf_192307.Picture"
+        android:label="Extraer imagnes"/>
+</navigation>
