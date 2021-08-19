@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/txt_indicaciones_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar la función a realizar"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/bt_mergerpdf_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/design_default_color_primary"
+        android:minWidth="160dp"
+        android:text="Unir PDFs"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/txt_indicaciones_editor"/>
+
+    <Button
+        android:id="@+id/bt_extraer_img_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/design_default_color_primary"
+        android:minWidth="160dp"
+        android:text="Extraer imagenes"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/bt_mergerpdf_editor"/>
+
+    <Button
+        android:id="@+id/bt_split_pdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/design_default_color_primary"
+        android:minWidth="160dp"
+        android:text="Split (Extraer páginas)"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/bt_extraer_img_editor"/>
+
+</LinearLayout>
