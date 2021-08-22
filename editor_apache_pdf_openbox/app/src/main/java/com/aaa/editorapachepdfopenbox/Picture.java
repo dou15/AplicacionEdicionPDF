@@ -1,3 +1,20 @@
+/*****************************************************************************
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+ Douglas González Parra 2021
+ douglas.gonzalezparra@ucr.ac.cr
+ *****************************************************************************/
+
 package com.aaa.editorapachepdfopenbox;
 
 // Importa paquetes necesarios
@@ -42,7 +59,7 @@ import java.io.IOException;
 *****************************************************************************/
 public class Picture extends Fragment {
     // inicializa variables
-    private Button btfileimg, btextraerimg; // Botones para seleccionar archivo PDF y convertir a imagenes
+    private Button btfileimg, btconvertirpdftoimg; // Botones para seleccionar archivo PDF y convertir a imagenes
     private TextView txt_path_show;         // Muestra el path del archivo seleccionado
     private String pathPDFtoPictures;       // Path del archivo PDF seleccionado
     private String name = "preciosMayoristas";
@@ -73,7 +90,7 @@ public class Picture extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.picture, container, false);
         btfileimg =  view.findViewById(R.id.bt_file_img);
-        btextraerimg =  view.findViewById(R.id.bt_extraer_img);
+        btconvertirpdftoimg =  view.findViewById(R.id.bt_convertir_pdf_to_img);
         txt_path_show = view.findViewById(R.id.img_path_file);
 
         // selecciona archivo PDF
@@ -85,14 +102,14 @@ public class Picture extends Fragment {
         });
 
         // Invoca el método que convierte el archivo PDF a imagenes
-        btextraerimg.setOnClickListener(new View.OnClickListener() {
+        btconvertirpdftoimg.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 try {
                     PDFBoxResourceLoader.init(getActivity());
-                    extraerImagenes(pathPDFtoPictures);
-                    txt_path_show.setText("Imagenes del PDF extraidas");
+                    convertirPDFImagenes(pathPDFtoPictures);
+                    txt_path_show.setText("PDF convertido a imagenes");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -103,7 +120,7 @@ public class Picture extends Fragment {
     }
 
     // Convierte el archivo PDF a imagenes
-    public static void extraerImagenes(String pathPDFtoPictures)throws IOException {
+    public static void convertirPDFImagenes(String pathPDFtoPictures)throws IOException {
 
         // Cargando documento PDF
         File filePDF = new File(pathPDFtoPictures);

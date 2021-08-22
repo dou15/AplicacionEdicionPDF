@@ -4,71 +4,57 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".MergePDF">
+    tools:context=".Picture">
 
     <TextView
-        android:id="@+id/txt_indicaciones"
+        android:id="@+id/txt_indicaciones_imgToPDF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
-        android:text="Seleccionar los dos archivos a unir"
+        android:text="Convierte imagenes a PDF"
         android:fontFamily="sans-serif-condensed"
         android:textColor="@color/black"
         android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/bt_file1"
-        android:layout_width="280dp"
+        android:id="@+id/bt_file_imgToPDF"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:layout_centerInParent="true"
-        android:text="Cargar PDF 1"
+        android:text="Seleccionar Imagenes"
         android:backgroundTint="@color/design_default_color_primary"
         android:textColor="#ffffff"
         android:minWidth="160dp"
         android:layout_marginTop="8dp"
-        android:layout_below="@+id/txt_indicaciones"/>
+        android:layout_below="@+id/txt_indicaciones_imgToPDF"/>
 
     <Button
-        android:id="@+id/bt_file2"
-        android:layout_width="280dp"
+        android:id="@+id/bt_convertir_pdf_to_imgToPDF"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:layout_centerInParent="true"
-        android:text="Cargar PDF 2"
+        android:text="Convertir imagenes a PDF"
         android:backgroundTint="@color/design_default_color_primary"
         android:textColor="#ffffff"
         android:minWidth="160dp"
         android:layout_marginTop="8dp"
-        android:layout_below="@+id/bt_file1"/>
-
-    <Button
-        android:id="@+id/bt_merge"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/design_default_color_primary"
-        android:minWidth="160dp"
-        android:text="Unir PDFs"
-        android:textColor="#ffffff"
-        android:layout_below="@+id/bt_file2"/>
+        android:layout_below="@+id/bt_convertir_pdf_to_imgToPDF"/>
 
     <TextView
-        android:id="@+id/txt_path_merger"
+        android:id="@+id/img_path_fileimgtoPDF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:text=" "
-        android:fontFamily="sans-serif-condensed"
         android:textColor="@color/black"
-        android:layout_below="@+id/bt_merge"
+        android:layout_below="@+id/bt_convertir_pdf_to_imgToPDF"
+        android:fontFamily="sans-serif-condensed"
         android:textSize="20sp"/>
 
 </LinearLayout>

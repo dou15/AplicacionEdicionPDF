@@ -10,14 +10,18 @@
         android:id="@+id/txt_indicaciones_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
-        android:text="Extraer las imagenes del archivo PDF"
-        android:textColor="@color/black"/>
+        android:text="Convierte un archivo PDF a imagenes"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/bt_file_img"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:layout_centerInParent="true"
         android:text="Cargar PDF"
@@ -28,12 +32,13 @@
         android:layout_below="@+id/txt_indicaciones_img"/>
 
     <Button
-        android:id="@+id/bt_extraer_img"
-        android:layout_width="wrap_content"
+        android:id="@+id/bt_convertir_pdf_to_img"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:layout_centerInParent="true"
-        android:text="Extraer imagenes"
+        android:text="Convertir PDF a imagenes"
         android:backgroundTint="@color/design_default_color_primary"
         android:textColor="#ffffff"
         android:minWidth="160dp"
@@ -44,9 +49,12 @@
         android:id="@+id/img_path_file"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:text=" "
         android:textColor="@color/black"
-        android:layout_below="@+id/bt_extraer_img"/>
+        android:layout_below="@+id/bt_extraer_img"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="20sp"/>
 
 </LinearLayout>

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_split_PDF"
             app:destination="@id/splitpdf" />
+        <action
+            android:id="@+id/action_img_to_pdf"
+            app:destination="@id/picturetopdf" />
     </fragment>
     <fragment
         android:id="@+id/mergepdf"
@@ -24,9 +27,13 @@
     <fragment
         android:id="@+id/picture"
         android:name="com.aaa.editorapachepdfopenbox.Picture"
-        android:label="Extraer imagnes"/>
+        android:label="Convertir a imagenes"/>
     <fragment
         android:id="@+id/splitpdf"
         android:name="com.aaa.editorapachepdfopenbox.SplitPDF"
         android:label="Split (extraer páginas)"/>
+    <fragment
+        android:id="@+id/picturetopdf"
+        android:name="com.aaa.editorapachepdfopenbox.PictureToPDF"
+        android:label="Imagenes a PDF"/>
 </navigation>
