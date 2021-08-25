@@ -55,7 +55,7 @@ public class SplitPDF extends Fragment {
     // Locacion donde almacena las imagenes al convertir el archivo PDF a imagenes
     private static final String OUTPUT_DIR = "/storage/emulated/0/Documents/";
 
-    // Prueba
+    // Pagina inicio final
     private int begin_page;
     private int end_page;
 

@@ -7,18 +7,18 @@
     tools:context=".Picture">
 
     <TextView
-        android:id="@+id/txt_indicaciones_split"
-        android:layout_width="wrap_content"
+        android:id="@+id/txt_indicaciones_removepage"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
-        android:text="Split (extraer páginas del PDF)"
+        android:text="Remover páginas del pdf"
         android:fontFamily="sans-serif-condensed"
         android:textColor="@color/black"
         android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/bt_file_split"
+        android:id="@+id/bt_file_removepage"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -29,58 +29,58 @@
         android:textColor="#ffffff"
         android:minWidth="160dp"
         android:layout_marginTop="8dp"
-        android:layout_below="@+id/txt_indicaciones_split"/>
+        android:layout_below="@+id/txt_indicaciones_removepage"/>
 
     <TextView
-        android:id="@+id/txt_split_numbers"
-        android:layout_width="wrap_content"
+        android:id="@+id/txt_removepage_numbers"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
-        android:text="Ingrese las paginas de inicio y final a extraer"
+        android:text="Al remover una sola página ingrese el mismo número de página en ambos espacios."
         android:fontFamily="sans-serif-condensed"
         android:textColor="@color/black"
-        android:layout_below="@+id/bt_file_split"
+        android:layout_below="@+id/bt_file_removepage"
         android:textSize="20sp"/>
 
     <EditText
-        android:id="@+id/number_page_begin_split"
+        android:id="@+id/number_page_begin_remove"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:hint="Ingresar la página de inicio a extraer"
+        android:hint="Ingresar inicio del rango de páginas a remvoer"
         android:inputType="number"
-        android:layout_below="@+id/txt_split_numbers"/>
+        android:layout_below="@+id/txt_removepage_numbers"/>
 
     <EditText
-        android:id="@+id/number_page_end_split"
+        android:id="@+id/number_page_end_remove"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:hint="Ingresar la página de fin a extraer"
+        android:hint="Ingresar final del rango de páginas a remvoer"
         android:inputType="number"
-        android:layout_below="@+id/number_page_begin_split"/>
+        android:layout_below="@+id/number_page_begin_remove"/>
 
     <Button
-        android:id="@+id/bt_split"
+        android:id="@+id/bt_removepage"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:layout_centerInParent="true"
-        android:text="Split PDF (Extraer páginas pdf)"
+        android:text="Remover páginas"
         android:backgroundTint="@color/design_default_color_primary"
         android:textColor="#ffffff"
         android:minWidth="160dp"
         android:layout_marginTop="8dp"
-        android:layout_below="@+id/number_page_end_split"/>
+        android:layout_below="@+id/number_page_end_remove"/>
 
     <TextView
-        android:id="@+id/split_path_file"
+        android:id="@+id/removepage_path_file"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -88,7 +88,7 @@
         android:text=" "
         android:fontFamily="sans-serif-condensed"
         android:textColor="@color/black"
-        android:layout_below="@+id/bt_split"
+        android:layout_below="@+id/bt_removepage"
         android:textSize="20sp"/>
 
 </LinearLayout>

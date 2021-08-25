@@ -19,6 +19,12 @@
         <action
             android:id="@+id/action_img_to_pdf"
             app:destination="@id/picturetopdf" />
+        <action
+            android:id="@+id/action_remove_pages_pdf"
+            app:destination="@id/removepages" />
+        <action
+            android:id="@+id/action_add_img_to_pdf"
+            app:destination="@id/addimagetopdf" />
     </fragment>
     <fragment
         android:id="@+id/mergepdf"
@@ -36,4 +42,12 @@
         android:id="@+id/picturetopdf"
         android:name="com.aaa.editorapachepdfopenbox.PictureToPDF"
         android:label="Imagenes a PDF"/>
+    <fragment
+        android:id="@+id/removepages"
+        android:name="com.aaa.editorapachepdfopenbox.RemovePagePdf"
+        android:label="Remueve paginas del PDF"/>
+    <fragment
+        android:id="@+id/addimagetopdf"
+        android:name="com.aaa.editorapachepdfopenbox.AddImageToPDF"
+        android:label="Agrega imagen como página en el PDF"/>
 </navigation>

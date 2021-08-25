@@ -35,6 +35,7 @@ import androidx.navigation.Navigation;
 public class Editor extends Fragment {
     // declara botones
     Button boton_mergerpdf, boton_convertir_pdf_to_img, boton_split_pdf, boton_img_to_pdf;
+    Button boton_removepage_pdf, boton_addImageToPdf;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,6 +80,23 @@ public class Editor extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_img_to_pdf);
+            }
+        });
+
+        // Convierte imagenes a PDDF
+        boton_removepage_pdf = view.findViewById(R.id.bt_removepage_pdf_editor);
+        boton_removepage_pdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_remove_pages_pdf);
+            }
+        });
+
+        boton_addImageToPdf = view.findViewById(R.id.bt_addImageToPDF_pdf_editor);
+        boton_addImageToPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_add_img_to_pdf);
             }
         });
 

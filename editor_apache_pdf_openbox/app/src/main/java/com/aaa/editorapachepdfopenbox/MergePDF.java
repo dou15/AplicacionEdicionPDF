@@ -18,6 +18,7 @@
 package com.aaa.editorapachepdfopenbox;
 
 // Importa paquetes necesarios
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -29,6 +30,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -42,6 +44,7 @@ import com.tom_roush.pdfbox.multipdf.PDFMergerUtility;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 
 /****************************************************************************
  *  Une dos archivos PDF en uno solo
@@ -57,8 +60,11 @@ public class MergePDF extends Fragment {
     String path1;
     String path2;
 
+    Intent myFileIntent1;
+    int RESULT_OK=-1;
+
     // Contracto cargar archivo PDF uno
-    ActivityResultLauncher<String> filePdf_1 = registerForActivityResult(new ActivityResultContracts.GetContent(),
+    /*ActivityResultLauncher<String> filePdf_1 = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
@@ -67,6 +73,34 @@ public class MergePDF extends Fragment {
                     path1 = "/storage/emulated/0/Documents/edesur.pdf";
                     txt_path_show.setText(path1);
                     displatToast(path1);
+                }
+            });*/
+
+    /*ActivityResultLauncher<Intent> filePdf_1 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri uri) {
+                    uri = myFileIntent1.getData();
+                    //path1 = myFileIntent1.getData().getPath();
+                    path1 = uri.toString();
+                    //path1=myFileIntent1.getData().getPath();
+                    //txt_path_show.setText(path1);
+                    //displatToast(path1);
+                }
+            });*/
+
+    ActivityResultLauncher<String> filePdf_1 = registerForActivityResult(
+            new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri result) {
+                    if (result != null) {
+                        File file = new File(result.getPath());
+                        //path1=file.getPath();
+                        path1 = "/storage/emulated/0/Documents/edesur.pdf";
+                        txt_path_show.setText(path1);
+                        displatToast(path1);
+                    }
                 }
             });
 
@@ -101,6 +135,11 @@ public class MergePDF extends Fragment {
         btFile1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*myFileIntent1 = new Intent();
+                myFileIntent1.setType("application/pdf");
+                myFileIntent1.setAction(Intent.ACTION_GET_CONTENT);
+                filePdf_1.launch(myFileIntent1);*/
+
                 filePdf_1.launch("application/pdf");
             }
         });
@@ -141,7 +180,7 @@ public class MergePDF extends Fragment {
             // Instantiate a new PDFMergerUtility.
             PDFMergerUtility pdfMerger = new PDFMergerUtility();
             //Set the name of the destination file.
-            pdfMerger.setDestinationFileName("/storage/emulated/0/Documents/merged_biblio_tom.pdf");
+            pdfMerger.setDestinationFileName("/storage/emulated/0/Documents/pdf_merged.pdf");
 
             // Add a source file to the list of files to merge.
             pdfMerger.addSource(new File(path1));

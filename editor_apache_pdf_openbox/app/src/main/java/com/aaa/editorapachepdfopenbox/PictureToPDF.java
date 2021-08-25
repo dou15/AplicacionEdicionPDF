@@ -55,6 +55,7 @@ import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 
 /****************************************************************************
  *  Convierte imagenes a PDF
@@ -90,8 +91,8 @@ public class PictureToPDF extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.picturetopdf, container, false);
-        btfileimgToPDF =  view.findViewById(R.id.bt_file_imgToPDF);
-        btconvertirimgToPDF =  view.findViewById(R.id.bt_convertir_pdf_to_imgToPDF);
+        btfileimgToPDF = view.findViewById(R.id.bt_file_imgToPDF);
+        btconvertirimgToPDF = view.findViewById(R.id.bt_convertir_pdf_to_imgToPDF);
         txt_path_show_imgToPDF = view.findViewById(R.id.img_path_fileimgtoPDF);
 
         // selecciona archivo PDF
@@ -126,59 +127,25 @@ public class PictureToPDF extends Fragment {
 
     // Convertir Imagenes a PDF
     public static void convertirImgToPDF(String pathPDFtoPictures)throws IOException {
-        //Creating PDF document object
-        /*PDDocument doc = new PDDocument();
-
-        for (int i=0; i<5; i++) {
-            //Creating a blank page
-            PDPage blankPage = new PDPage();
-
-            //Adding the blank page to the document
-            doc.addPage( blankPage );
-            }
-
-        //Saving the document
-        doc.save(OUTPUT_DIR + "/blank_5.pdf");
-        //------------------------------------------------------------------------------------------
-        //Loading an existing document
-        File file = new File(OUTPUT_DIR + "/blank_5.pdf");
-        //PDDocument doc = PDDocument.load(file);
-
-        //Retrieving the page
-        PDPage page = doc.getPage(0);
-
-        //Creating PDImageXObject object
-        PDImageXObject pdImage = PDImageXObject.createFromFile(pathPDFtoPictures,doc);
-
-        //creating the PDPageContentStream object
-        PDPageContentStream contents = new PDPageContentStream(doc, page);
-
-        //Drawing the image in the PDF document
-        contents.drawImage(pdImage, 250, 300);
-
-        //Closing the PDPageContentStream object
+        PDDocument doc = new PDDocument();
+        PDPage page = new PDPage();
+        doc.addPage(page);
+        PDImageXObject image = PDImageXObject.createFromFile(pathPDFtoPictures, doc);
+        PDPageContentStream contents = new PDPageContentStream(doc,page);
+        PDRectangle pageSize = PDRectangle.A4;
+        int originalWidth = image.getWidth();
+        int originalHeight = image.getHeight();
+        float pageWidth = pageSize.getWidth();
+        float pageHeight = pageSize.getHeight();
+        float ratio = Math.min(pageWidth/originalWidth, pageHeight/originalHeight);
+        float scaleWidth = originalWidth * ratio;
+        float scaleHeight = originalHeight * ratio;
+        float x = (pageWidth - scaleWidth)/2;
+        float y = (pageHeight - scaleHeight)/2;
+        contents.drawImage(image,x,y,scaleWidth,scaleHeight);
         contents.close();
-
-        //Saving the document
-        doc.save(OUTPUT_DIR + "/blank_5.pdf");*/
-
-        PDDocument doc = new PDDocument(); // crea nuevo documento
-
-        PDPage page = new PDPage(); // nueva pagina
-        doc.addPage(page);  // agrega nueva pagina al documento
-
-        //String image = Image.class.getResource(pathPDFtoPictures).getFile(); // android
-        PDImageXObject pdImage = PDImageXObject.createFromFile(pathPDFtoPictures, doc);  // crea un objeto XObject en el documento
-
-        PDPageContentStream contents = new PDPageContentStream(doc, page); // crea un nueva pagina con el contenido stream
-        PDRectangle mediaBox = page.getMediaBox(); // crea un rectangulo en la pagina
-
-        float startX = (mediaBox.getWidth() - pdImage.getWidth())/30; // posicion x de inicio, (ancho pagina - ancho imagen)/2
-        float startY = (mediaBox.getHeight() - pdImage.getHeight())/30; // posicion y de inicio, (alto pagina - alto imagen)/2
-        contents.drawImage(pdImage, 70 , 250); // dibuja imagen en la pagina, imagen, posicion x, posicion y
-        contents.close();
-        doc.save(new File(OUTPUT_DIR + "imgTopdf.pdf")); // salva el documento
-        }
+        doc.save(new File(OUTPUT_DIR + "imgTopdf.pdf"));
+    }
 }
 
 
