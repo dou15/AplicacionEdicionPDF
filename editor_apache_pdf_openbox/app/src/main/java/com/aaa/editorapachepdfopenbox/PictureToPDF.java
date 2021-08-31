@@ -17,6 +17,7 @@
 
 package com.aaa.editorapachepdfopenbox;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -39,6 +40,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.nbsp.materialfilepicker.MaterialFilePicker;
+import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.tom_roush.pdfbox.cos.COSName;
 import com.tom_roush.pdfbox.cos.COSStream;
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
@@ -56,6 +59,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /****************************************************************************
  *  Convierte imagenes a PDF
@@ -64,13 +70,15 @@ public class PictureToPDF extends Fragment {
     // inicializa variables
     private Button btfileimgToPDF, btconvertirimgToPDF; // Botones para seleccionar imagenes y convertir a pdf
     private TextView txt_path_show_imgToPDF;         // Muestra el path del archivo seleccionado
-    private String pathPDFtoPictures;       // Path del archivo PDF seleccionado
+    private String pathPicturesToPDF;       // Path del archivo PDF seleccionado
+
+    int RESULT_OK = -1;
 
     // Localización donde almacena el archivo PDF creado a partir de imagenes
     private static final String OUTPUT_DIR = "/storage/emulated/0/Documents/";
 
     // Contrato previo de actividad a realizar al seleccionar el archivo PDF.
-    ActivityResultLauncher<String> PictureToPDFfLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
+    /*ActivityResultLauncher<String> PictureToPDFfLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
@@ -80,7 +88,7 @@ public class PictureToPDF extends Fragment {
                     txt_path_show_imgToPDF.setText(pathPDFtoPictures);
                     displatToast(pathPDFtoPictures);
                 }
-            });
+            });*/
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,7 +107,8 @@ public class PictureToPDF extends Fragment {
         btfileimgToPDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PictureToPDFfLauncher.launch("img/*");
+                //PictureToPDFfLauncher.launch("img/*");
+                filePicker1();
             }
         });
 
@@ -110,7 +119,7 @@ public class PictureToPDF extends Fragment {
             public void onClick(View v) {
                 try {
                     PDFBoxResourceLoader.init(getActivity());
-                    convertirImgToPDF(pathPDFtoPictures);
+                    convertirImgToPDF(pathPicturesToPDF);
                     txt_path_show_imgToPDF.setText("PDF creado");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -121,15 +130,45 @@ public class PictureToPDF extends Fragment {
         return view;
     }
 
+    //filePicker1(): El contenido de la función no se coloca en btFile1.setOnClickListener
+    //devido a que MaterialFilePicker() se utiliza en un fragment, para ser utilizado
+    //dentro de setOnClickListener se debe especificar Activity
+    private void filePicker1() {
+        new MaterialFilePicker()
+                //.withActivity(getActivity())
+                .withSupportFragment(this)
+                .withHiddenFiles(true)
+                .withRequestCode(1000)
+                .start();
+    }
+
+    //Responde según las solicitudes en onClick
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1000 && resultCode == RESULT_OK) {
+            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            //path PDF 1
+            pathPicturesToPDF = filePath;
+            txt_path_show_imgToPDF.setText(pathPicturesToPDF);
+            displatToast("path: " + pathPicturesToPDF);
+        }
+    }
+
     private void displatToast(String s) {
         Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
     }
 
     // Convertir Imagenes a PDF
     public static void convertirImgToPDF(String pathPDFtoPictures)throws IOException {
+        //Nuevo documento
         PDDocument doc = new PDDocument();
+        //Nueva página
         PDPage page = new PDPage();
+        //Agrega página al documento
         doc.addPage(page);
+        //Imagen al documento
         PDImageXObject image = PDImageXObject.createFromFile(pathPDFtoPictures, doc);
         PDPageContentStream contents = new PDPageContentStream(doc,page);
         PDRectangle pageSize = PDRectangle.A4;
@@ -144,7 +183,9 @@ public class PictureToPDF extends Fragment {
         float y = (pageHeight - scaleHeight)/2;
         contents.drawImage(image,x,y,scaleWidth,scaleHeight);
         contents.close();
-        doc.save(new File(OUTPUT_DIR + "imgTopdf.pdf"));
+        @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss"); // add S if you need milliseconds
+        String filename = "imgTopdf" + df.format(new Date()) + "." + "pdf";
+        doc.save(new File(OUTPUT_DIR + filename));
     }
 }
 

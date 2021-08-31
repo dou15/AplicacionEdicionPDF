@@ -39,6 +39,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.nbsp.materialfilepicker.MaterialFilePicker;
+import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.tom_roush.pdfbox.cos.COSName;
 import com.tom_roush.pdfbox.cos.COSStream;
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
@@ -64,11 +66,13 @@ public class Picture extends Fragment {
     private String pathPDFtoPictures;       // Path del archivo PDF seleccionado
     private String name = "preciosMayoristas";
 
+    int RESULT_OK = -1;
+
     // Locacion donde almacena las imagenes al convertir el archivo PDF a imagenes
     private static final String OUTPUT_DIR = "/storage/emulated/0/Documents";
 
     // Contrato previo de actividad a realizar al seleccionar el archivo PDF.
-    ActivityResultLauncher<String> PDFtoPicturesfLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
+    /*ActivityResultLauncher<String> PDFtoPicturesfLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
@@ -78,7 +82,7 @@ public class Picture extends Fragment {
                     txt_path_show.setText(pathPDFtoPictures);
                     displatToast(pathPDFtoPictures);
                 }
-            });
+            });*/
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,7 +101,8 @@ public class Picture extends Fragment {
         btfileimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PDFtoPicturesfLauncher.launch("application/pdf");
+                //PDFtoPicturesfLauncher.launch("application/pdf");
+                filePicker1();
             }
         });
 
@@ -107,7 +112,7 @@ public class Picture extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    PDFBoxResourceLoader.init(getActivity());
+                    PDFBoxResourceLoader.init(getActivity()); //initialize the library's resource loader
                     convertirPDFImagenes(pathPDFtoPictures);
                     txt_path_show.setText("PDF convertido a imagenes");
                 } catch (Exception e) {
@@ -117,6 +122,32 @@ public class Picture extends Fragment {
         });
 
         return view;
+    }
+
+    //filePicker1() filePicker2(): El contenido de la función no se coloca en btFile1.setOnClickListener
+    //devido a que MaterialFilePicker() se utiliza en un fragment, para ser utilizado
+    //dentro de setOnClickListener se debe especificar Activity
+    private void filePicker1() {
+        new MaterialFilePicker()
+                //.withActivity(getActivity())
+                .withSupportFragment(this)
+                .withHiddenFiles(true)
+                .withRequestCode(1000)
+                .start();
+    }
+
+    //Responde según las solicitudes en onClick
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1000 && resultCode == RESULT_OK) {
+            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            //path PDF 1
+            pathPDFtoPictures = filePath;
+            txt_path_show.setText(pathPDFtoPictures);
+            displatToast("path: " + pathPDFtoPictures);
+        }
     }
 
     // Convierte el archivo PDF a imagenes

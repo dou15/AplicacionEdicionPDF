@@ -18,7 +18,9 @@
 package com.aaa.editorapachepdfopenbox;
 
 // Importa paquetes necesarios
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -39,12 +41,17 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.nbsp.materialfilepicker.MaterialFilePicker;
+import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.tom_roush.pdfbox.io.MemoryUsageSetting;
 import com.tom_roush.pdfbox.multipdf.PDFMergerUtility;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /****************************************************************************
  *  Une dos archivos PDF en uno solo
@@ -52,44 +59,16 @@ import java.net.URI;
 public class MergePDF extends Fragment {
     // inicializa variables
     Button btFile1, btFile2,btmerge; // Botones seleccionar archivos PDF y realizar la unión de los archivos
-
     TextView txt_path_show; // mostrar path
 
-    //String path1="/storage/emulated/0/Documents/edesur.pdf";
-    //String path2="/storage/emulated/0/Documents/preciosMayoristas.pdf";
     String path1;
     String path2;
 
-    Intent myFileIntent1;
+    //Intent myFileIntent1;
     int RESULT_OK=-1;
 
     // Contracto cargar archivo PDF uno
-    /*ActivityResultLauncher<String> filePdf_1 = registerForActivityResult(new ActivityResultContracts.GetContent(),
-            new ActivityResultCallback<Uri>() {
-                @Override
-                public void onActivityResult(Uri uri) {
-                    // Handle the returned Uri
-                    //path1 = data.getData().getPath();
-                    path1 = "/storage/emulated/0/Documents/edesur.pdf";
-                    txt_path_show.setText(path1);
-                    displatToast(path1);
-                }
-            });*/
-
-    /*ActivityResultLauncher<Intent> filePdf_1 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<Uri>() {
-                @Override
-                public void onActivityResult(Uri uri) {
-                    uri = myFileIntent1.getData();
-                    //path1 = myFileIntent1.getData().getPath();
-                    path1 = uri.toString();
-                    //path1=myFileIntent1.getData().getPath();
-                    //txt_path_show.setText(path1);
-                    //displatToast(path1);
-                }
-            });*/
-
-    ActivityResultLauncher<String> filePdf_1 = registerForActivityResult(
+    /*ActivityResultLauncher<String> filePdf_1 = registerForActivityResult(
             new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
@@ -102,10 +81,10 @@ public class MergePDF extends Fragment {
                         displatToast(path1);
                     }
                 }
-            });
+            });*/
 
     // Contracto cargar archivo PDF dos
-    ActivityResultLauncher<String> filePdf_2 = registerForActivityResult(new ActivityResultContracts.GetContent(),
+   /* ActivityResultLauncher<String> filePdf_2 = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
@@ -115,7 +94,7 @@ public class MergePDF extends Fragment {
                     txt_path_show.setText(path2);
                     displatToast(path2);
                 }
-            });
+            });*/
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,6 +105,7 @@ public class MergePDF extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mergepdf, container, false);
+        //Botones y texto a mostrar
         btFile1 =  view.findViewById(R.id.bt_file1);
         btFile2 =  view.findViewById(R.id.bt_file2);
         btmerge =  view.findViewById(R.id.bt_merge);
@@ -135,12 +115,8 @@ public class MergePDF extends Fragment {
         btFile1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*myFileIntent1 = new Intent();
-                myFileIntent1.setType("application/pdf");
-                myFileIntent1.setAction(Intent.ACTION_GET_CONTENT);
-                filePdf_1.launch(myFileIntent1);*/
-
-                filePdf_1.launch("application/pdf");
+                //filePdf_1.launch("application/pdf");
+                filePicker1();
             }
         });
 
@@ -148,7 +124,8 @@ public class MergePDF extends Fragment {
         btFile2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filePdf_2.launch("application/pdf");
+                //filePdf_2.launch("application/pdf");
+                filePicker2();
             }
         });
 
@@ -158,6 +135,7 @@ public class MergePDF extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
+                    //Función une archivos PDF
                     pdfMerge(path1, path2);
                     txt_path_show.setText("PDFs unidos");
                 } catch (Exception e) {
@@ -169,6 +147,47 @@ public class MergePDF extends Fragment {
         return view;
     }
 
+    //filePicker1() filePicker2(): El contenido de la función no se coloca en btFile1.setOnClickListener
+    //devido a que MaterialFilePicker() se utiliza en un fragment, para ser utilizado
+    //dentro de setOnClickListener se debe especificar Activity
+    private void filePicker1() {
+        new MaterialFilePicker()
+                //.withActivity(getActivity())
+                .withSupportFragment(this)
+                .withHiddenFiles(true)
+                .withRequestCode(1000)
+                .start();
+    }
+    private void filePicker2() {
+        new MaterialFilePicker()
+                //.withActivity(getActivity())
+                .withSupportFragment(this)
+                .withHiddenFiles(true)
+                .withRequestCode(2000)
+                .start();
+    }
+
+    //Responde según las solicitudes en onClick
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1000 && resultCode == RESULT_OK) {
+            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            //path PDF 1
+            path1 = filePath;
+            txt_path_show.setText(path1);
+            displatToast("path: " + path1);
+        }
+        if (requestCode == 2000 && resultCode == RESULT_OK) {
+            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            //path PDF 2
+            path2 = filePath;
+            txt_path_show.setText(path1);
+            displatToast("path: " + path2);
+        }
+    }
+
     private void displatToast(String s) {
         Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
     }
@@ -177,16 +196,19 @@ public class MergePDF extends Fragment {
     public void pdfMerge(String path1, String path2) throws Exception{
 
         try {
-            // Instantiate a new PDFMergerUtility.
+            // Instancia PDFMergerUtility
             PDFMergerUtility pdfMerger = new PDFMergerUtility();
-            //Set the name of the destination file.
-            pdfMerger.setDestinationFileName("/storage/emulated/0/Documents/pdf_merged.pdf");
+            //Carpeta y nombre documento a salvar
+            @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss"); // add S if you need milliseconds
+            String filename = "/storage/emulated/0/Documents/" + "pdf_merged" + df.format(new Date()) + "." + "pdf";
+            //pdfMerger.setDestinationFileName("/storage/emulated/0/Documents/pdf_merged.pdf");
+            pdfMerger.setDestinationFileName(filename);
 
-            // Add a source file to the list of files to merge.
+            // agrega los documentos a unir a pdfMerger
             pdfMerger.addSource(new File(path1));
             pdfMerger.addSource(new File(path2));
 
-            //Merge the list of source documents, saving the result in the destination file.
+            //Une los documentos PDF y son guardados
             pdfMerger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
 
         } catch (IOException e){
